@@ -7,7 +7,7 @@ TSCurrencyTextField is a UITextField subclass that behaves like an ATM currency-
 </p>
 
 ##Installing TSCurrencyTextField
-<img src="http://cocoapod-badges.herokuapp.com/v/TSCurrencyTextField/badge.png"/><br/>
+<img src="https://cocoapod-badges.herokuapp.com/v/TSCurrencyTextField/badge.png"/><br/>
 You can install TSCurrencyTextField in your project by using [CocoaPods](https://github.com/cocoapods/cocoapods):
 
 ```Ruby
