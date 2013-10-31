@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GRN-NI-6jb">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="gQl-7D-DYr">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="GRN-NI-6jb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wDa-bW-dtK">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="KPM-eT-Ute"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2zf-CK-cwv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138" y="-743"/>
+        </scene>
+        <!--View Controller - TSCurrencyTextField-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="TSViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HZ4-zk-DNN"/>
+                        <viewControllerLayoutGuide type="bottom" id="xVU-fB-ska"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L8b-b3-FEN" customClass="TSCurrencyTextField">
+                                <rect key="frame" x="48" y="104" width="171" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="171" id="Xls-Na-YXm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="amountChanged:" destination="vXZ-lx-hvc" eventType="editingChanged" id="WFb-et-kyt"/>
+                                    <action selector="amountChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="jE7-o4-7OL"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="wvy-1p-WDw"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8g-9m-rsB">
+                                <rect key="frame" x="227" y="104" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7Yh-Fg-IJV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dby-hN-jqy">
+                                <rect key="frame" x="48" y="142" width="65" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8U-9O-aPZ">
+                                <rect key="frame" x="132" y="142" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="L8b-b3-FEN" firstAttribute="top" secondItem="HZ4-zk-DNN" secondAttribute="bottom" constant="40" id="3Gt-Lk-6BL"/>
+                            <constraint firstItem="Dby-hN-jqy" firstAttribute="top" secondItem="L8b-b3-FEN" secondAttribute="bottom" constant="8" id="BJj-Ch-STm"/>
+                            <constraint firstItem="L8b-b3-FEN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="48" id="KrD-Pp-9rn"/>
+                            <constraint firstItem="Dby-hN-jqy" firstAttribute="baseline" secondItem="y8U-9O-aPZ" secondAttribute="baseline" id="Sl3-4C-u9t"/>
+                            <constraint firstItem="f8g-9m-rsB" firstAttribute="top" secondItem="HZ4-zk-DNN" secondAttribute="bottom" constant="40" id="gNl-7w-1ca"/>
+                            <constraint firstItem="L8b-b3-FEN" firstAttribute="leading" secondItem="Dby-hN-jqy" secondAttribute="leading" id="juQ-vl-VNP"/>
+                            <constraint firstItem="y8U-9O-aPZ" firstAttribute="leading" secondItem="Dby-hN-jqy" secondAttribute="trailing" constant="19" id="tGY-MW-Gmi"/>
+                            <constraint firstItem="f8g-9m-rsB" firstAttribute="leading" secondItem="L8b-b3-FEN" secondAttribute="trailing" constant="8" id="zLn-ZF-CK7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="TSCurrencyTextField" id="JZZ-uM-ETY"/>
+                    <connections>
+                        <outlet property="_amountLabel" destination="y8U-9O-aPZ" id="MBc-hg-MUT"/>
+                        <outlet property="_currencyTextField" destination="L8b-b3-FEN" id="pQE-Kr-DI4"/>
+                        <outlet property="_doneButton" destination="f8g-9m-rsB" id="A99-pp-NPh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="373" y="-743"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
