@@ -18,6 +18,18 @@ pod 'TSCurrencyTextField', '~> 0.1.0'
 
 An example project is included in the Example directory. This should give you an idea how to use the class.
 
+###textFieldPublicDelegate
+Property was added to be able to call delegate method `- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;` if delegate exists to eventually decide if change should be made. Method is called with `string` parameter pointing to exactly the same string that will be put in text field right after method is called.
+It allows to block text field editing e.g. if maximum length is reached:
+
+```
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    const int maxPriceStringLength = 10; // '$' + 7 digits + 2 commas, e.g. $1,123,456
+    return (string && string < maxPriceStringLength);
+}
+```
+
 ##Donate
 
 Please consider a small donation if you use TSCurrencyTextField in your projects.  It'll make me feel good.
