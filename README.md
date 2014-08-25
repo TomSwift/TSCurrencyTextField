@@ -26,7 +26,7 @@ It allows to block text field editing e.g. if maximum length is reached:
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     const int maxPriceStringLength = 10; // '$' + 7 digits + 2 commas, e.g. $1,123,456
-    return (string && string < maxPriceStringLength);
+    return (string && string.length < maxPriceStringLength);
 }
 ```
 
