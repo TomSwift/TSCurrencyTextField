@@ -14,4 +14,6 @@
 
 @property (nonatomic) NSNumber* amount;
 
+@property (nonatomic, strong) id<UITextFieldDelegate> textFieldPublicDelegate;
+
 @end
