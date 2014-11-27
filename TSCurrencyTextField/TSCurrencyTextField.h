@@ -13,5 +13,6 @@
 @property (nonatomic) NSNumberFormatter* currencyNumberFormatter;
 
 @property (nonatomic) NSNumber* amount;
+@property (nonatomic, assign) NSUInteger maximumLength;
 
 @end
