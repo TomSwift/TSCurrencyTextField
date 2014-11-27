@@ -43,6 +43,7 @@
 
 - (void) TSCurrencyTextField_commonInit
 {
+    _maximumLength = 0;
     _invalidInputCharacterSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
 
     _currencyNumberFormatter = [[NSNumberFormatter alloc] init];
@@ -155,7 +156,16 @@
     int distanceFromEnd = textField.text.length - (range.location + range.length);
     
     NSString* changed = [textField.text stringByReplacingCharactersInRange: range withString: string];
-    [textField setText: changed];
+    if (textField.maximumLength > 0 && changed.length > textField.maximumLength)
+      return NO;
+  
+    if ([self.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)])
+    {
+      if ([self.delegate textField:textField shouldChangeCharactersInRange:range replacementString:string])
+        [textField setText:changed];
+    }
+    else
+      [textField setText:changed];
     
     int pos = textField.text.length - distanceFromEnd;
     if ( pos >= 0 && pos <= textField.text.length )
