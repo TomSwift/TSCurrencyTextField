@@ -155,7 +155,13 @@
     int distanceFromEnd = textField.text.length - (range.location + range.length);
     
     NSString* changed = [textField.text stringByReplacingCharactersInRange: range withString: string];
-    [textField setText: changed];
+    if ([self.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)])
+    {
+      if ([self.delegate textField:textField shouldChangeCharactersInRange:range replacementString:string])
+        [textField setText:changed];
+    }
+    else
+      [textField setText:changed];
     
     int pos = textField.text.length - distanceFromEnd;
     if ( pos >= 0 && pos <= textField.text.length )
