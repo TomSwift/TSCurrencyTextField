@@ -14,4 +14,7 @@
 
 @property (nonatomic) NSNumber* amount;
 
+@property (nonatomic) BOOL shouldShowDefaultValue;
+@property (nonatomic) NSNumber* defaultValue;
+
 @end
