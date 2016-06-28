@@ -15,10 +15,15 @@
 @implementation TSCurrencyTextField
 {
     TSCurrencyTextFieldDelegate* _currencyTextFieldDelegate;
-
+    
     NSNumberFormatter*           _currencyNumberFormatter;
-
+    
     NSCharacterSet*              _invalidInputCharacterSet;
+}
+
+- (void) awakeFromNib
+{
+    [self configureDefaultValue];
 }
 
 - (id) initWithCoder: (NSCoder *) aDecoder
@@ -44,7 +49,7 @@
 - (void) TSCurrencyTextField_commonInit
 {
     _invalidInputCharacterSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-
+    
     _currencyNumberFormatter = [[NSNumberFormatter alloc] init];
     _currencyNumberFormatter.locale = [NSLocale currentLocale];
     _currencyNumberFormatter.numberStyle = kCFNumberFormatterCurrencyStyle;
@@ -53,7 +58,14 @@
     _currencyTextFieldDelegate = [TSCurrencyTextFieldDelegate new];
     [super setDelegate: _currencyTextFieldDelegate];
     
-    [self setText: @"0"];
+    [self configureDefaultValue];
+}
+
+- (void) configureDefaultValue
+{
+    if ([self shouldShowDefaultValue]) {
+        [self setText:([self defaultValue]) ? [[self defaultValue] stringValue] : @"0"];
+    }
 }
 
 - (void) setCaratPosition: (NSInteger) pos
@@ -74,7 +86,7 @@
 
 - (void) setAmount: (NSNumber *) amount
 {
-    NSString* amountString = [NSString stringWithFormat: @"%.*lf", _currencyNumberFormatter.maximumFractionDigits, amount.doubleValue];
+    NSString* amountString = [NSString stringWithFormat: @"%.*lf", (int)_currencyNumberFormatter.maximumFractionDigits, amount.doubleValue];
     [self setText: amountString];
 }
 
@@ -134,7 +146,7 @@
 - (id) forwardingTargetForSelector: (SEL) aSelector
 {
     // we'll forward any implemented UITextFieldDelegate method, other than the one we implement ourself.
-
+    
     struct objc_method_description md = protocol_getMethodDescription( @protocol(UITextFieldDelegate), aSelector, NO, YES);
     
     if ( md.name != NULL && md.types != NULL && [self.delegate respondsToSelector: aSelector] )
@@ -152,12 +164,12 @@
         return NO;
     }
     
-    int distanceFromEnd = textField.text.length - (range.location + range.length);
+    int distanceFromEnd = (int)textField.text.length - ((int)range.location + (int)range.length);
     
     NSString* changed = [textField.text stringByReplacingCharactersInRange: range withString: string];
     [textField setText: changed];
     
-    int pos = textField.text.length - distanceFromEnd;
+    int pos = (int)textField.text.length - (int)distanceFromEnd;
     if ( pos >= 0 && pos <= textField.text.length )
     {
         [textField setCaratPosition: pos];
